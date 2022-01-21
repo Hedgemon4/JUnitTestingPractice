@@ -1,9 +1,7 @@
 package TestQuestions;
-
 public class CountAr
 {
-    public static void main( String [] args )
-    {
+    public static void main( String [] args ) {
         int [] arr = {1, 3, 4, 5, 4, 9, 4, 9, 9, 7, 7, 3};
         int[] arrCounts = countThisPlease(arr);
         for( int j=0; j<arrCounts.length; j++ )
