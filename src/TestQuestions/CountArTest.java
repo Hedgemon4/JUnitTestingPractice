@@ -36,6 +36,15 @@ class CountArTest {
         System.setOut(systemOut);
     }
 
+    @Test
+    public void StringOutputTest(){
+        //Test console output of provided example array
+        String expectedOutput = "0102310203";
+        CountAr.main(new String[0]);
+        String actualOutput = getOutput();
+        actualOutput = actualOutput.replaceAll("[^0-9]", "");
+        assertEquals(expectedOutput, actualOutput, "Output from console is incorrect");
+    }
 
     @Test
     public void OutputTestGivenArray() {
@@ -43,7 +52,7 @@ class CountArTest {
         int [] arrIn = {1, 3, 4, 5, 4, 9, 4, 9, 9, 7, 7, 3};
         int [] arrActual = CountAr.countThisPlease(arrIn);
         int [] arrExpected = {0, 1, 0, 2, 3, 1, 0, 2, 0, 3} ;
-        assertArrayEquals(arrExpected, arrActual, "Incorrect counting of arrays");
+        assertArrayEquals(arrExpected, arrActual, "Output of the given test array is incorrect");
     }
     @Test
     public void OutputTestEmptyArray() {
@@ -51,15 +60,7 @@ class CountArTest {
         int [] arrIn = {};
         int [] arrActual = CountAr.countThisPlease(arrIn);
         int [] arrExpected = {0,0,0,0,0,0,0,0,0,0} ;
-        assertArrayEquals(arrExpected, arrActual, "Incorrect counting of arrays");
-    }
-    @Test
-    public void OutputTest5EachArray() {
-        //test an array containing 5 of each number
-        int [] arrIn = {0,0,0,0,0,1,1,1,1,1,2,2,2,2,2,3,3,3,3,3,4,4,4,4,4,5,5,5,5,5,6,6,6,6,6,7,7,7,7,7,8,8,8,8,8,9,9,9,9,9};
-        int [] arrActual = CountAr.countThisPlease(arrIn);
-        int [] arrExpected = {5,5,5,5,5,5,5,5,5,5} ;
-        assertArrayEquals(arrExpected, arrActual, "Incorrect counting of arrays");
+        assertArrayEquals(arrExpected, arrActual, "Incorrect counting of empty array");
     }
 
     @Test
@@ -73,6 +74,6 @@ class CountArTest {
         for( int i = 0; i < arrIn.length; i++ )
             arrExpected[ arrIn[i] ]++;
         int [] arrActual = CountAr.countThisPlease(arrIn);
-        assertArrayEquals(arrExpected, arrActual, "Incorrect counting of arrays");
+        assertArrayEquals(arrExpected, arrActual, "Counting of randomly generated array was incorrect");
     }
 }

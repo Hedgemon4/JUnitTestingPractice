@@ -1,24 +1,29 @@
 package TestQuestions;
 
 import java.util.Scanner;
-public class ArmsAreStrong
-{
-    public static void main( String[] args )
-    {
-        Scanner input = new Scanner( System.in );
-        System.out.println( "Enter a number: " );
+
+public class ArmsAreStrong {
+    public static void main(String[] args) {
+        Scanner input = new Scanner(System.in);
+        System.out.println("Enter a number: ");
         int n = input.nextInt();
         int nn = n;
-        int result  = 0;
-        while( n > 0 )
-        {
-            result += Math.pow( n % 10 , 3) ;
+        int numDigits = 0;
+        int result = 0;
+        while (nn > 0) {
+            numDigits++;
+            nn = nn / 10;
+        }
+        nn = n;
+        while (n > 0) {
+            result += Math.pow(n % 10, numDigits);
             n = n / 10;
         }
-        if( result == nn )
-            System.out.println( nn + " is an Armstrong Number!" );
+        if (result == nn)
+            System.out.println(nn + " is an Armstrong Number!");
         else
-            System.out.println( nn + " is NOT an Armstrong Number!" );
+            System.out.println(nn + " is NOT an Armstrong Number!");
     }
 }
+
 
