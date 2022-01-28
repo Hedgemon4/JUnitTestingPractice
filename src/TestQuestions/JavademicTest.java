@@ -35,58 +35,18 @@ class JavademicTest {
 
     @Test
     public void OutputCheck(){
-        String expectedOut = "Num cases of infections in 30 days is 13099.97821824974 people" + System.lineSeparator();
+        int expectedCases = 13100;
         //Call the main method here
         Javademic.main(new String[0]);
         //Get the output
         String actualOutput = getOutput();
+        actualOutput = actualOutput.replaceAll("[^0-9.]", "");
+        String timeOutput = actualOutput.substring(0,2);
+        String timeExpected = "30";
+        actualOutput = actualOutput.substring(2);
+        int actualCases = (int) Math.round(Double.parseDouble(actualOutput));
         //Compare
-        assertEquals(expectedOut, actualOutput, "The output is different");
+        assertEquals(expectedCases, actualCases, "The number of cases is different");
+        assertEquals(timeExpected, timeOutput, "The number of days is different then expected");
     }
-
-//    @Test
-//    //does not work
-//    public void OutputCheck2() {
-//        //String expectedOut = "Num cases of infections in 30 days is 13099.97821824974 people" + System.lineSeparator();
-//        int expectedT = 30;
-//        double expectedXT = 13100;
-//        //Call the main method here
-//        Javademic.main(new String[0]);
-//        //Get the output
-//        String actualOutput = getOutput();
-//        int i;
-//        for(i = 0; i < actualOutput.length(); i++){
-//            if (Character.isDigit(actualOutput.charAt(i)))
-//                break;
-//        }
-//        String outputT = "";
-//        while(Character.isDigit(actualOutput.charAt(i))) {
-//            outputT += actualOutput.charAt(i);
-//            i++;
-//        }
-//        int actutalT = Integer.parseInt(outputT);
-//        int j;
-//        for(j = actualOutput.length() - 1; j >= 0; j--){
-//            if (Character.isDigit(actualOutput.charAt(j)))
-//                break;
-//        }
-//        while(Character.isDigit(actualOutput.charAt(j))) {
-//            outputT += actualOutput.charAt(j);
-//            j--;
-//        }
-//        String reverseOutputT = "";
-//        for(int k = outputT.length() - 1; k >= 0; k--)
-//            reverseOutputT += actualOutput.charAt(k);
-//        double actualXT = Math.round(Double.parseDouble(outputT));
-//        //Compare
-//        //assertEquals(expectedOut, actualOutput, "The output is different");
-//        assertEquals(expectedT, actutalT, "The time is different");
-//        assertEquals(expectedXT, actualXT, "The xt is different");
-//    }
-
-//    @Test
-//    public void VarCheck(){
-//        Javademic.main(new String[0]);
-//
-//    }
 }
