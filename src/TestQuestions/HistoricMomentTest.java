@@ -38,16 +38,20 @@ class HistoricMomentTest {
 
     @Test
     public void BC0Check(){
-        //test 0 BC
+        //Create input
         String input = "0 false";
         provideInput(input);
         HistoricMoment.main(new String[0]);
+        //get output
         String output = getOutput();
+        //extract string right of =
         output = output.substring(output.indexOf('=') + 1).trim();
+        //Get the year and year type
         int actualYear = Integer.parseInt(output.substring(0, output.indexOf(" ")).trim());
         String actualYearType = output.substring(output.indexOf(" ") + 1).trim();
         String expectedYearType = "BC";
         int expectedYear = 1;
+        //compare to expected values
         assertEquals(expectedYear, actualYear, String.format("Year is different: Expected Year = %d, Output year = %d", expectedYear, actualYear));
         assertEquals(expectedYearType, actualYearType, String.format("Year type is different: Expected Type = %s, Actual Type = %s", expectedYearType, actualYearType));
     }
@@ -56,16 +60,21 @@ class HistoricMomentTest {
     public void randomADCheck(){
         //test random year from ad
         String expectedYearType = "AD";
+        //Get random year
         Random r = new Random();
         int inputYear = r.nextInt(1000) + 1;
         String input = inputYear + " true";
+        //calculate expected value
         int expectedYear = --inputYear;
+        //provide input and run main
         provideInput(input);
         HistoricMoment.main(new String[0]);
+        //Extract output
         String output = getOutput();
         output = output.substring(output.indexOf('=') + 1).trim();
         int actualYear = Integer.parseInt(output.substring(0, output.indexOf(" ")).trim());
         String actualYearType = output.substring(output.indexOf(" ") + 1).trim();
+        //Compare actual and expected values
         assertEquals(expectedYear, actualYear, String.format("Year is different: Expected Year = %d, Output year = %d", expectedYear, actualYear));
         assertEquals(expectedYearType, actualYearType, String.format("Year type is different: Expected Type = %s, Actual Type = %s", expectedYearType, actualYearType));
     }

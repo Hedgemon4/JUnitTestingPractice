@@ -37,36 +37,44 @@ class DeCrypticTest {
     }
 
     @Test
-    public void cryptDigitCheck() {
-        //Call main
+    public void OutputTest1(){
+        //run main & get output
         DeCryptic.main(new String[0]);
         String output = getOutput();
-
-        //make sure string is longer than 8 digits or
-
-        //Check to see if the first number is 8 digits
-        assertTrue(Character.isDigit(output.charAt(7)) && !(Character.isLetterOrDigit(output.charAt(8))) , "crypt was not 8 digits");
-
+        int i = 0;
+        while(Character.isDigit(output.charAt(i)))
+            i++;
+        String outputCrypt = output.substring(0, i).trim();
+        //Test to make sure crypt is an 8 digit number
+        assertTrue(outputCrypt.length() == 8, "Crypt was not 8 digits");
+        //Get value of key
+        output = output.replaceAll("[^0-9]", "");
+        int outputKey = Integer.parseInt("" + output.charAt(8));
+        //Get Value of Encrypt
+        int outputEncrypt = Integer.parseInt(output.substring(9).trim());
+        int expectedEncrypt = Integer.parseInt(outputCrypt) / outputKey;
+        //test if the expected encrypt = actual encrypt
+        assertEquals(expectedEncrypt, outputEncrypt, String.format("The output of Encrypt is incorrect; Expected output was %d with key %d, but actual output was %d (Note that your key should be 1 digit)", expectedEncrypt, outputKey, outputEncrypt));
     }
 
     @Test
-    public void encryptionTest(){
-        //Call main
+    public void OutputTest2(){
+        //run main & get output
         DeCryptic.main(new String[0]);
         String output = getOutput();
-
-        String numberOnly = output.replaceAll("[^0-9]", "");
-
-        //Make sure numbers only is at least 8 digits
-
-        assertTrue(numberOnly.length() >= 8, "Crypt was not 8 digits");
-        String cryptS = numberOnly.substring(0, 8);
-        String encryptS = numberOnly.substring(8, numberOnly.length());
-
-        //Divide to ensure number was encrypted by some value less than 10
-        int crypt = Integer.parseInt(cryptS);
-        int encrypt = Integer.parseInt(encryptS);
-        assertTrue(crypt / encrypt <= 10, "Encrypting number was greater than 9");
-
+        int i = 0;
+        while(Character.isDigit(output.charAt(i)))
+            i++;
+        String outputCrypt = output.substring(0, i).trim();
+        //Test to make sure crypt is an 8 digit number
+        assertTrue(outputCrypt.length() == 8, "Crypt was not 8 digits");
+        //Get value of key
+        output = output.replaceAll("[^0-9]", "");
+        int outputKey = Integer.parseInt("" + output.charAt(8));
+        //Get Value of Encrypt
+        int outputEncrypt = Integer.parseInt(output.substring(9).trim());
+        int expectedEncrypt = Integer.parseInt(outputCrypt) / outputKey;
+        //test if the expected encrypt = actual encrypt
+        assertEquals(expectedEncrypt, outputEncrypt, String.format("The output of Encrypt is incorrect; Expected output was %d with key %d, but actual output was %d (Note that your key should be 1 digit)", expectedEncrypt, outputKey, outputEncrypt));
     }
 }
